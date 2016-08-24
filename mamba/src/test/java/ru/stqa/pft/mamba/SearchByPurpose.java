@@ -26,8 +26,12 @@ public class SearchByPurpose {
     @Test
     public void SearchByPurpose() {
         Login();
+
+        //Выполняем поиск по цели знакомства - Путешествия
         wd.findElement(By.linkText("Поиск")).click();
         wd.findElement(By.xpath("//nav[@class='b-menu__auth']/a[10]/i")).click();
+
+        //Смотрим нет ли других указанных целей в анкете, если есть то снимаем
         if (wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[1]/div[8]/div/div[2]/div/label[1]/ng-include/div/input")).isSelected()) {
             wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[1]/div[8]/div/div[2]/div/label[1]/ng-include/div/input")).click();
         }
@@ -56,6 +60,8 @@ public class SearchByPurpose {
         if (wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[1]/div[8]/div/div[2]/div/label[9]/ng-include/div/input")).isSelected()) {
             wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[1]/div[8]/div/div[2]/div/label[9]/ng-include/div/input")).click();
         }
+
+        //Проверяем цель в нескольких анкетах
         wd.findElement(By.cssSelector("input.button.b-button")).click();
         wd.findElement(By.cssSelector("span.name")).click();
         wd.findElement(By.xpath("//div[@class='b-content__main']//li[.='Путешествия']")).click();

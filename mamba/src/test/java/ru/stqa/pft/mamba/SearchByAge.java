@@ -26,10 +26,8 @@ public class SearchByAge {
     @Test
     public void SearchByAge() {
         Login();
+        //Выполняем поиск по возрасту 18 - 20
         wd.findElement(By.linkText("Поиск")).click();
-
-        //String str = wd.findElement(By.className("b-field__type ng-pristine ng-valid ng-touched")).getText();
-
         wd.findElement(By.xpath("//nav[@class='b-menu__auth']/a[10]/i")).click();
         if (!wd.findElement(By.xpath("//div[@class='b-field__inner']/select[1]//option[1]")).isSelected()) {
             wd.findElement(By.xpath("//div[@class='b-field__inner']/select[1]//option[1]")).click();
@@ -43,13 +41,16 @@ public class SearchByAge {
         String str1 = wd.findElement(By.xpath("//div[@class='b-field__inner']/select[1]//option[1]")).getText();
         String str2 = wd.findElement(By.xpath("//div[@class='b-field__inner']/select[2]//option[3]")).getText();
         String str = wd.findElement(By.className("age")).getText();
+
         // Убираем лишние значения, в нешем случае пробел и слово "лет"
         String substr = str.substring(2,4);
+
         // Текстовые поля превращяем в числа
         int i = Integer.parseInt(str1);
         int j = Integer.parseInt(str2);
         int k = Integer.parseInt(substr);
-        //Смотрим на странице в общем классе Age нет ли чисел не совпадающий с заданным диапозоном
+
+        //Смотрим на странице в общем классе Age нет ли чисел не совпадающих с заданным диапозоном
         if (k>=i && k<=j)
         {
             System.out.println("OK");

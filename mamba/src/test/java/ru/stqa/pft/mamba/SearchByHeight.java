@@ -26,6 +26,7 @@ public class SearchByHeight {
     @Test
     public void SearchByHeight() {
         Login();
+        // Делаем поиск по заданному росту 180 - 190 см
         wd.findElement(By.linkText("Поиск")).click();
         wd.findElement(By.xpath("//nav[@class='b-menu__auth']/a[10]/i")).click();
         if (!wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[2]/div[5]/div/div[2]/select//option[5]")).isSelected()) {
@@ -38,6 +39,7 @@ public class SearchByHeight {
         }
         String str2 = wd.findElement(By.xpath("//div[@class='b-fieldset']/fieldset[2]/div[6]/div/div[2]/select//option[6]")).getText();
 
+        //Проверяем рост в нескольких анкетах
         wd.findElement(By.cssSelector("input.button.b-button")).click();
         wd.findElement(By.cssSelector("img.g-block_item-image")).click();
         wd.findElement(By.xpath("//div[@class='b-content__main']//div[.='180']")).click();
@@ -51,23 +53,22 @@ public class SearchByHeight {
         wd.findElement(By.xpath("//div[@class='b-content__main']//div[.='186']")).click();
         String prof3 = wd.findElement(By.xpath("//div[@class='b-content__main']//div[.='186']")).getText();
 
-
+        //Удаляем лишнее (из "180см (5'11'') оставляем только "180")
         String substr1 = str1.substring(0,3);
         String substr2 = str2.substring(0,3);
+
+        //Превращаем строку в число
         int i = Integer.parseInt(substr1);
         int j = Integer.parseInt(substr2);
         int p1 = Integer.parseInt(prof1);
         int p2 = Integer.parseInt(prof2);
         int p3 = Integer.parseInt(prof3);
 
-        if (p1>=i && p1<=j && p2>=i && p2>=j && p3>=i &&p3<=j)
+        //Проверяем нет ли после поиска анкет не из заданного диапазона
+        if (p1>=i && p1<=j && p2>=i && p2>=j && p3>=i && p3<=j)
         {
             System.out.println("OK");
         }
-
-
-       //int i = Integer.parseInt(substr1);
-       // int j = Integer.parseInt(substr2);
     }
 
     private void Login() {
